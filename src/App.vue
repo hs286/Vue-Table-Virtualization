@@ -1,12 +1,11 @@
 <template>
-  <div class="card">
-    <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
-      tableStyle="min-width: 50rem" v-model:filters="filters" filterDisplay="menu" :loading="loading"
-      :globalFilterFields="['vin']" removableSort sortMode="multiple">
-      <template #header>
-        <Settings :columns="columns" @toggle-column-visibility="toggleColumnVisibility" />
+  <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
+    tableStyle="min-width: 50rem" v-model:filters="filters" :loading="loading" :globalFilterFields="['vin']"
+    removableSort sortMode="multiple">
+    <template #header>
 
-        <div class="flex justify-start gap-3 my-2">
+      <div class="flex justify-between max-sm:block">
+        <div class="flex gap-2 max-sm:block max-sm:grid max-sm:gap-2">
           <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined @click="clearFilter" />
           <IconField>
             <InputIcon>
@@ -15,13 +14,14 @@
             <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
           </IconField>
         </div>
-      </template>
-      <Column v-for="(col, index) of columns" :field="col.field" :style="col.visible === false ? 'display: none;' : ''"
-        :header="col.header" sortable :key="col.field + '_' + index">
-      </Column>
+        <Settings :columns="columns" @toggle-column-visibility="toggleColumnVisibility" />
+      </div>
+    </template>
+    <Column v-for="(col, index) of columns" :field="col.field" :style="col.visible === false ? 'display: none;' : ''"
+      :header="col.header" sortable :key="col.field + '_' + index">
+    </Column>
 
-    </DataTable>
-  </div>
+  </DataTable>
 </template>
 
 
@@ -99,5 +99,25 @@ const toggleColumnVisibility = (key) => {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   cursor: grab;
+}
+
+td:hover {
+  background-color: black !important;
+}
+
+td:active {
+  background-color: black !important;
+}
+
+td:visited {
+  background-color: black !important;
+}
+
+td:focus {
+  background-color: black !important;
+}
+
+td:focus-visible {
+  background-color: black !important;
 }
 </style>
